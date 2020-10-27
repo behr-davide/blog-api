@@ -10,6 +10,8 @@ RUN apk del --no-cache .build-deps
 
 RUN mkdir -p /blog
 COPY blog/ /blog/
+RUN pip install -e /blog
+COPY tests/ /tests/
 
 WORKDIR /blog
 ENV FLASK_APP=flask_app.py FLASK_DEBUG=1 PYTHONUNBUFFERED=1
