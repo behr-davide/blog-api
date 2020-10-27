@@ -2,7 +2,7 @@ build:
 		docker-compose build
 
 up: 
-		docker-compose up -d blog
+		docker-compose up -d blog postgres
 
 test:
 		docker-compose run --rm --no-deps --entrypoint=pytest blog /tests		
