@@ -8,11 +8,11 @@ RUN pip install -r /tmp/dev-requirements.txt
 
 RUN apk del --no-cache .build-deps
 
-RUN mkdir -p /blog
-COPY blog/ /blog/
-RUN pip install -e /blog
+RUN mkdir -p /src
+COPY src/ /src/
+RUN pip install -e /src
 COPY tests/ /tests/
 
-WORKDIR /blog
-ENV FLASK_APP=flask_app.py FLASK_DEBUG=1 PYTHONUNBUFFERED=1
+WORKDIR /src
+ENV FLASK_APP=blog/flask_app.py FLASK_DEBUG=1 PYTHONUNBUFFERED=1
 CMD [ "flask", "run", "--host=0.0.0.0", "--port=80" ]

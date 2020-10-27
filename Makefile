@@ -1,10 +1,15 @@
-test:
-		pytest --tb=short
-
 build:
-		docker build . -t blog
+		docker-compose build
 
-run: 
-		docker run -it -p 5005:80 blog:latest
+up: 
+		docker-compose up -d blog
 
-all: build run 
+test:
+		docker-compose run --rm --no-deps --entrypoint=pytest blog /tests		
+
+down:
+		docker-compose down --remove-orphans
+
+reload: down build up
+
+all: down build up test
